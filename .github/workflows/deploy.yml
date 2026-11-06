@@ -28,6 +28,8 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/blog-app-client:latest
+          build-args: |
+            VITE_API_URL=http://${{ secrets.EC2_HOST }}:8000/api
 
       # 5. The robot SSH's into your AWS server and tells it to restart
       - name: Deploy to EC2
